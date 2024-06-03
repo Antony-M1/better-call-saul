@@ -6,36 +6,24 @@ llm = Ollama(model="phi3:3.8b")
 
 class State(rx.State):
     prompt = ""
-
+    llm_response = ""
     
-
-# def index() -> rx.Component:
-#     """
-#         Your Index Page
-#     """
-#     return rx.Component(
-#         rx.vstack(
-#             rx.heading("DALL-E", font_size="1.5em"),
-#             rx.input(
-#                 placeholder="Enter a prompt..",
-#                 on_blur=State.set_prompt,
-#                 width="25em",
-#             ),
-#         ),
-#         width='100%',
-#         height='100vh'
-#     )
-
+    def get_llm_response(self):
+        if self.prompt == "":
+            return rx.window_alert("Prompt Empty")
+    
 
 def index():
     return rx.center(
+        
         rx.vstack(
             rx.heading("DALL-E", font_size="1.5em"),
             rx.input(
                 placeholder="Enter a prompt..",
                 on_blur=State.set_prompt,
-                width="25em",
+                width="100%",
             ),
+            rx.button("Generate Response", on_click=State.get_llm_response, width="25em"),
             # rx.button("Generate Image", on_click=State.get_image, width="25em"),
             # rx.cond(
             #     State.processing,
@@ -47,7 +35,7 @@ def index():
             # ),
             # align="center",
         ),
-        width="100%",
+        width="100vw",
         height="100vh",
     )
 

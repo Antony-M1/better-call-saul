@@ -48,3 +48,23 @@ reflex init
 reflex run
 ```
 </details>
+
+
+<details>
+  <summary><h3>Debugger</h3></summary>
+
+```
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Module",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "reflex",
+      "args": "run"
+    },
+  ]
+}
+```
+</details>
